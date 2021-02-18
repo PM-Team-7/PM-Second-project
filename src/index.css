@@ -18,7 +18,12 @@ body {
     min-width: 320px;
     line-height: 1.2;
     background-color: #F7F6F1;
+}
 
+body,
+#dashboard,
+.dashboard__heading,
+.dashboard__card-heading {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,11 +38,12 @@ body {
 
 
 form {
-    text-align: center;
-
     width: 100%;
     padding: 6.5% 12%;
+    text-align: center;
+}
 
+form, .dashboard__card {
     background-color: #fff;
     border-radius: 2px;
     box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
@@ -110,10 +116,9 @@ form > p > span:hover {
 #dashboard {
     width: 100%;
     height: 100%;
+
     padding: 2% 5%;
 
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
 }
 
@@ -122,20 +127,22 @@ form > p > span:hover {
     font-size: 1.5em;
 }
 
+.dashboard__heading,
+.dashboard__card-heading {
+    justify-content: space-between;
+}
+
 .dashboard__table {
-    width: calc(100%/4);
+    width: calc(100% / 4);
     margin: 0 1%;
     padding: 1%;
 
-    border: 2px solid #E4E3DE;
+    border: 1.5px solid #E4E3DE;
 }
 
 .dashboard__card {
     margin: 15px 0;
     padding: 3% 6%;
-
-    background: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 }
 
 .dashboard__card-heading {
@@ -143,5 +150,25 @@ form > p > span:hover {
 }
 
 .dashboard__card-description {
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
 }
+
+@media only screen and (max-width: 980px) {
+    body {
+        font-size: 0.6em;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    #dashboard {
+        font-size: 1.7em;
+        display: block;
+    }
+
+    .dashboard__table {
+        width: 100%;
+        margin: 3% 0;
+        padding: 5%;
+    }
+}
+
