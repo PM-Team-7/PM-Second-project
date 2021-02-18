@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const svgToMiniDataURI = require('mini-svg-data-uri');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -47,7 +48,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: 'images',
+            outputPath: 'assets',
           },
         }],
       },
@@ -57,7 +58,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            outputPath: 'images',
+            outputPath: 'assets',
           },
         }],
       },
@@ -66,7 +67,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            outputPath: 'images',
+            outputPath: 'assets',
             generator: (content) => svgToMiniDataURI(content.toString()),
           },
         }],
@@ -74,12 +75,19 @@ module.exports = {
     ],
   },
   plugins: [
+    new HTMLWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[hash].[name].css',
     }),
     new CleanWebpackPlugin(),
-    new HTMLWebpackPlugin({
-      template: './index.html',
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: 'assets',
+        to: 'assets',
+      }],
     }),
   ],
   devServer: {
