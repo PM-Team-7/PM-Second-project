@@ -15,12 +15,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
+    extensions: ['.js'],
     alias: {
       '@models': path.resolve(__dirname, 'src/scripts/models'),
       '@components': path.resolve(__dirname, 'src/scripts/components'),
       '@services': path.resolve(__dirname, 'src/scripts/services'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@config': path.resolve(__dirname, 'src/config.json'),
     },
   },
   optimization: {
