@@ -5,11 +5,25 @@ module.exports = {
   },
   extends: [
     'airbnb-base',
+    'plugin:import/recommended',
   ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  rules: {
+  settings: {
+    extensions: ['.js'],
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@models', './src/scripts/models'],
+          ['@components', './src/scripts/components'],
+          ['@services', './src/scripts/services'],
+          ['@styles', './src/styles'],
+          ['@assets', './src/assets'],
+          ['@config', './src/config.json'],
+        ],
+      },
+    },
   },
 };
