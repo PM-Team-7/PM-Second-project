@@ -4,8 +4,6 @@
 /* black: #000 */
 
 html, body {
-    height: 100%;
-    width: 100%;
     font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 
@@ -20,6 +18,21 @@ body {
 
     display: flex;
     align-items: center;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #E4E3DE;
 }
 
 #dashboard,
@@ -115,6 +128,7 @@ form > p > span:hover {
 
 
 #dashboard {
+
     height: 100%;
     padding: 2%;
 
