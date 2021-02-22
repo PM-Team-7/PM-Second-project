@@ -23,21 +23,6 @@ body {
     align-items: center;
 }
 
-body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-
-body::-webkit-scrollbar {
-    width: 10px;
-}
-
-body::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-    background-color: #E4E3DE;
-}
-
 #dashboard,
 .dashboard__heading,
 .dashboard__card-heading,
@@ -47,15 +32,14 @@ body::-webkit-scrollbar-thumb {
     align-items: center;
 }
 
-#authorization {
-    display: none;
-}
-
 #authorization, #sign-in, #sign-up {
     width: 100%;
     height: 100%;
 }
 
+#authorization {
+    display: none;
+}
 
 /* Authorization */
 
@@ -140,7 +124,25 @@ form > p > span:hover {
     height: 100%;
     padding: 2%;
 
+    justify-content: flex-start;
     align-items: flex-start;
+
+    overflow: scroll;
+}
+
+#dashboard::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+#dashboard::-webkit-scrollbar {
+    width: 10px;
+}
+
+#dashboard::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #E4E3DE;
 }
 
 .dashboard__heading {
@@ -160,6 +162,7 @@ form > p > span:hover {
 }
 
 .dashboard__table {
+    min-width: 300px;
     width: 300px;
     margin: 0 0.5%;
     padding: 1%;
