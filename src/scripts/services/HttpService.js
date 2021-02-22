@@ -1,4 +1,5 @@
 const handleErrors = (response) => !response.ok ? null : response;
+const convertJson = (response) => response && response.json();
 
 export default class HttpService {
   static async request({
@@ -13,6 +14,6 @@ export default class HttpService {
       body: (method === 'GET' || method === 'DELETE') ? null : JSON.stringify(body),
     };
 
-    return fetch(url, option).then(handleErrors);
+    return fetch(url, option).then(handleErrors).then(convertJson);
   }
 }
