@@ -38,8 +38,9 @@ body {
 }
 
 #authorization {
-    display: none;
 }
+
+
 
 /* Authorization */
 
@@ -116,6 +117,11 @@ form > p > span:hover {
     text-decoration: underline;
 }
 
+#dashboard.hide,
+#sign-up.hide,
+#sign-in.hide {
+    display: none;
+}
 
 /*Dashboard */
 
@@ -187,6 +193,8 @@ form > p > span:hover {
 .dashboard__card-description {
     margin: 10px 0 20px 0;
 }
+
+
 
 @media only screen and (max-width: 980px) {
     body {

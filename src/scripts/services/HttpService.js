@@ -1,4 +1,4 @@
-const handleErrors = (response) => !response.ok ? null : response;
+const handleErrors = (response) => (!response.ok ? null : response);
 const convertJson = (response) => response && response.json();
 
 export default class HttpService {
