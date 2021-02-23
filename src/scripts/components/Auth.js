@@ -1,6 +1,5 @@
 import User from '@models/User';
 import AuthService from '@services/AuthService';
-import emitter from '@services/EventEmitter';
 
 class Auth {
   constructor() {
@@ -57,8 +56,6 @@ class Auth {
       identifier: this.signinUsername.value,
       password: this.signinPassword.value,
     });
-
-    emitter.subscribe('authorized', this.render);
   }
 
   signUpFormSubmit(e) {
@@ -69,8 +66,6 @@ class Auth {
       email: this.signupEmail.value,
       password: this.signupPassword.value,
     });
-
-    emitter.subscribe('authorized', this.render);
   }
 
   changeToSignIn() {
