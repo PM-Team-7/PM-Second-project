@@ -19,9 +19,13 @@
         
         border-radius: 1rem;
 
-        transform: translateY(1rem);
+        transform: translateY(.5rem);
 
         font-size: 1rem;
+
+        @media only screen and (min-width: 700px) {
+            font-size: 1em;
+        }
     }
 
     &__text-wrap:last-child {
@@ -35,11 +39,14 @@
         justify-content: flex-start;
         align-items: center;
 
-        background-color: rgba(0, 0, 0, .5);
+        background-color: rgba(0, 0, 0, .66);
     }
     
     &_show &__text-wrap {
-        display: block;
+        display: flex;
+        
+        justify-content: center;
+        text-align: center;
     }
 
     &__text {
