@@ -4,12 +4,12 @@ import User from '@models/User';
 import { API_URL } from '@config';
 
 export default class AuthService {
-  static async Login({ identifier, password }) {
+  static async Login({ username, password }) {
     const response = await HttpService.request({
       method: 'POST',
       url: `${API_URL}/auth/local`,
       body: {
-        identifier,
+        username,
         password,
       },
     });

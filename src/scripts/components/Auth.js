@@ -9,14 +9,19 @@ class Auth {
     this.signinUsername = document.getElementById('sign-in__username');
     this.signinPassword = document.getElementById('sign-in__password');
 
+    this.signupForm = document.getElementById('sign-up');
+    this.signupUsername = document.getElementById('sign-up__username');
+    this.signupEmail = document.getElementById('sign-up__email');
+    this.signupPassword = document.getElementById('sign-up__password');
+
     this.toSignIn = document.getElementById('to-sign-in');
     this.toSignUp = document.getElementById('to-sign-up');
 
-    this.signupForm = document.getElementById('sign-up');
-
     this.render = this.render.bind(this);
     this.registerListener = this.registerListener.bind(this);
-    this.signinFormSubmit = this.signinFormSubmit.bind(this);
+
+    this.signInFormSubmit = this.signInFormSubmit.bind(this);
+    this.signUpFormSubmit = this.signUpFormSubmit.bind(this);
 
     this.changeToSignIn = this.changeToSignIn.bind(this);
     this.changeToSignUp = this.changeToSignUp.bind(this);
@@ -25,18 +30,27 @@ class Auth {
   }
 
   render() {
-    if (User.token) {
-      this.authorization.classList.add('hide');
-    } else {
-      this.authorization.classList.remove('hide');
-    }
+    User.token
+      ? this.authorization.classList.add('hide')
+      : this.authorization.classList.remove('hide');
   }
 
-  signinFormSubmit(e) {
+  signInFormSubmit(e) {
     e.preventDefault();
+
     AuthService.Login({
       identifier: this.signinUsername.value,
       password: this.signinPassword.value,
+    });
+  }
+
+  signUpFormSubmit(e) {
+    e.preventDefault();
+
+    AuthService.Registration({
+      identifier: this.signupUsername.value,
+      email: this.signupEmail.value,
+      password: this.signupPassword.value,
     });
   }
 
@@ -51,7 +65,8 @@ class Auth {
   }
 
   registerListener() {
-    this.signinForm.addEventListener('submit', this.signinFormSubmit);
+    this.signinForm.addEventListener('submit', this.signInFormSubmit);
+    this.signupForm.addEventListener('submit', this.signUpFormSubmit);
 
     this.toSignIn.addEventListener('click', this.changeToSignIn);
     this.toSignUp.addEventListener('click', this.changeToSignUp);
