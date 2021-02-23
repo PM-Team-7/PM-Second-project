@@ -1,3 +1,5 @@
+import '@styles/Dashboard.scss';
+
 import StatusService from '@services/StatusService';
 import CardService from '@services/CardService';
 import Table from '@components/./Table';

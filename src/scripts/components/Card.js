@@ -1,3 +1,5 @@
+import '@styles/Card.scss';
+
 export default class Card {
   constructor(id, title, description, createdAt) {
     this.id = id;

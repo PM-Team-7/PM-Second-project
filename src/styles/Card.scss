@@ -1,0 +1,25 @@
+.dashboard__card {
+  margin: 15px 0;
+  padding: 3% 6%;
+
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+
+  & .dashboard__card-heading {
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & img {
+      cursor: pointer;
+      height: 15px;
+    }
+  }
+
+  & .dashboard__card-description {
+    margin: 10px 0 20px 0;
+  }
+}
