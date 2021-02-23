@@ -48,7 +48,7 @@ class Auth {
     e.preventDefault();
 
     AuthService.Registration({
-      identifier: this.signupUsername.value,
+      username: this.signupUsername.value,
       email: this.signupEmail.value,
       password: this.signupPassword.value,
     });
