@@ -2,14 +2,12 @@ import StatusService from '@services/StatusService';
 import CardService from '@services/CardService';
 import Table from '@components/./Table';
 import Card from '@components/./Card';
+import User from '@models/User';
 
 class Dashboard {
   constructor() {
-    this.statuses = [];
-    this.allCards = [];
-    this.tables = [];
-
     this.dashboard = document.getElementById('dashboard');
+    this.tables = [];
 
     this.render = this.render.bind(this);
     this.initTables = this.initTables.bind(this);
@@ -17,22 +15,23 @@ class Dashboard {
   }
 
   async render() {
-    this.statuses = await StatusService.getStatuses();
-    this.allCards = await CardService.getCards();
+    if (User.token) {
+      const statuses = await StatusService.getStatuses();
+      const allCards = await CardService.getCards();
 
-    this.initTables();
+      this.initTables(statuses, allCards);
 
-    this.dashboard.innerHTML = this.buildView();
+      this.dashboard.innerHTML = this.buildView();
+    }
   }
 
-  initTables() {
-    this.statuses.forEach((status) => {
-      const cards = this.allCards.filter((card) => card.status === status.value);
-      const cardArray = [];
-      cards.forEach((card) => cardArray
-        .push(new Card(card.id, card.title, card.description, card.created_at)));
+  initTables(statuses, allCards) {
+    statuses.forEach((status) => {
+      const cardsFiltered = allCards
+        .filter((card) => card.status === status.value)
+        .map((card) => new Card(card.id, card.title, card.description, card.created_at));
 
-      this.tables.push(new Table(status.title, cardArray));
+      this.tables.push(new Table(status.title, cardsFiltered));
     });
   }
 

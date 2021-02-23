@@ -35,9 +35,12 @@ class Auth {
   }
 
   render() {
-    User.token
-      ? this.hideAuth()
-      : this.showAuth();
+    if (User.token) {
+      this.hideAuth();
+      emitter.emit('dashboard');
+    } else {
+      this.showAuth();
+    }
   }
 
   showAuth() {
@@ -57,8 +60,6 @@ class Auth {
       identifier: this.signinUsername.value,
       password: this.signinPassword.value,
     });
-
-    emitter.subscribe('authorized', this.render);
   }
 
   signUpFormSubmit(e) {
@@ -69,8 +70,6 @@ class Auth {
       email: this.signupEmail.value,
       password: this.signupPassword.value,
     });
-
-    emitter.subscribe('authorized', this.render);
   }
 
   changeToSignIn() {

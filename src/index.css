@@ -131,13 +131,14 @@ form > p > span:hover {
 
 
 #dashboard {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
     height: 100%;
     width: 100%;
 
     padding: 2%;
-
-    justify-content: flex-start;
-    align-items: flex-start;
 
     overflow: scroll;
 }
