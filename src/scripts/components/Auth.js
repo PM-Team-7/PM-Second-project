@@ -1,9 +1,11 @@
 import User from '@models/User';
 import AuthService from '@services/AuthService';
+import emitter from '@services/EventEmitter';
 
 class Auth {
   constructor() {
     this.authorization = document.getElementById('authorization');
+    this.dashboard = document.getElementById('dashboard');
 
     this.signinForm = document.getElementById('sign-in');
     this.signinUsername = document.getElementById('sign-in__username');
@@ -20,6 +22,9 @@ class Auth {
     this.render = this.render.bind(this);
     this.registerListener = this.registerListener.bind(this);
 
+    this.showAuth = this.showAuth.bind(this);
+    this.hideAuth = this.hideAuth.bind(this);
+
     this.signInFormSubmit = this.signInFormSubmit.bind(this);
     this.signUpFormSubmit = this.signUpFormSubmit.bind(this);
 
@@ -31,8 +36,18 @@ class Auth {
 
   render() {
     User.token
-      ? this.authorization.classList.add('hide')
-      : this.authorization.classList.remove('hide');
+      ? this.hideAuth()
+      : this.showAuth();
+  }
+
+  showAuth() {
+    this.authorization.classList.remove('hide');
+    this.dashboard.classList.add('hide');
+  }
+
+  hideAuth() {
+    this.authorization.classList.add('hide');
+    this.dashboard.classList.remove('hide');
   }
 
   signInFormSubmit(e) {
@@ -42,6 +57,8 @@ class Auth {
       identifier: this.signinUsername.value,
       password: this.signinPassword.value,
     });
+
+    emitter.subscribe('authorized', this.render);
   }
 
   signUpFormSubmit(e) {
@@ -52,6 +69,8 @@ class Auth {
       email: this.signupEmail.value,
       password: this.signupPassword.value,
     });
+
+    emitter.subscribe('authorized', this.render);
   }
 
   changeToSignIn() {
