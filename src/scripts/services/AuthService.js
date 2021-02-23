@@ -14,7 +14,7 @@ export default class AuthService {
       },
     });
 
-    User.setAuth(response && response.jwt);
+    User.token = response && response.jwt;
   }
 
   static async Registration({ username, email, password }) {
@@ -28,6 +28,6 @@ export default class AuthService {
       },
     });
 
-    User.setAuth(response && response.jwt);
+    User.token = response && response.jwt;
   }
 }
