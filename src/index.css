@@ -123,6 +123,10 @@ form > p > span:hover {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+
 /*Dashboard */
 
 
