@@ -6,14 +6,14 @@ export default class Table {
     this.buildView = this.buildView.bind(this);
   }
 
-  addCard() {
-  }
-
-  editCard() {
-  }
-
-  removeCard() {
-  }
+  // addCard() {
+  // }
+  //
+  // editCard() {
+  // }
+  //
+  // removeCard() {
+  // }
 
   buildView() {
     let cardsHTML = '';

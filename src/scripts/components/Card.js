@@ -1,8 +1,7 @@
-class Card {
-  constructor(id, title, status, description, createdAt) {
+export default class Card {
+  constructor(id, title, description, createdAt) {
     this.id = id;
     this.title = title;
-    this.status = status;
     this.description = description;
     this.createdAt = createdAt;
 
