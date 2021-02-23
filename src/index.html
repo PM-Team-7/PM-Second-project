@@ -15,32 +15,33 @@
 <section id="authorization">
 
     <div id="sign-in">
-        <form>
+        <form id="sign-in__form">
             <div class="inputs">
-                <input type="text" placeholder="Login">
-                <input type="password" placeholder="Password">
+                <input id="sign-in__username" type="text" placeholder="Login">
+                <input id="sign-in__password" type="password" placeholder="Password">
             </div>
 
-            <button>Sign in</button>
-            <p>Don`t have an account yet? <span>Sign up</span></p>
+            <button type="submit">Sign in</button>
+            <p>Don`t have an account yet? <span id="to-sign-up">Sign up</span></p>
         </form>
     </div>
 
-    <div id="sign-up">
-        <form>
+    <div id="sign-up" class="hide">
+        <form id="sign-up__form">
             <div class="inputs">
-                <input type="text" placeholder="Login">
-                <input type="password" placeholder="Password">
+                <input id="sign-up__username" type="text" placeholder="Login">
+                <input id="sign-up__email" type="email" placeholder="Email">
+                <input id="sign-up__password" type="password" placeholder="Password">
             </div>
 
-            <button>Sign up</button>
-            <p>Already have an account? <span>Sign in</span></p>
+            <button type="submit">Sign up</button>
+            <p>Already have an account? <span id="to-sign-in">Sign in</span></p>
         </form>
     </div>
 
 </section>
 
-<section id="dashboard">
+<section id="dashboard" class="hide">
 
     <div class="dashboard__table">
         <div class="dashboard__heading">

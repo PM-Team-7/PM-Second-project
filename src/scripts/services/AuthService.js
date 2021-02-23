@@ -1,5 +1,6 @@
-import HttpService from '@services/HttpService';
 import User from '@models/User';
+import emitter from '@services/EventEmitter';
+import HttpService from '@services/HttpService';
 
 import { API_URL } from '@config';
 
@@ -14,7 +15,7 @@ export default class AuthService {
       },
     });
 
-    User.token = response && response.jwt;
+    this.setToken(response);
   }
 
   static async Registration({ username, email, password }) {
@@ -28,6 +29,13 @@ export default class AuthService {
       },
     });
 
-    User.token = response && response.jwt;
+    this.setToken(response);
+  }
+
+  static setToken(response) {
+    if (response) {
+      User.token = response.jwt;
+      emitter.emit('authorized');
+    }
   }
 }
