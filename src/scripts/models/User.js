@@ -1,6 +1,10 @@
 export default class User {
   static set token(value) {
-    return value && sessionStorage.setItem('auth', value);
+    if (value) {
+      sessionStorage.setItem('auth', value);
+    } else {
+      sessionStorage.removeItem('auth');
+    }
   }
 
   static get token() {
