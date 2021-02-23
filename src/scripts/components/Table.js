@@ -1,4 +1,4 @@
-class Table {
+export default class Table {
   constructor(status, cards = []) {
     this.status = status;
     this.cards = cards;
