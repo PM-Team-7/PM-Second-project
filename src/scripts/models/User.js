@@ -1,6 +1,10 @@
 export default class User {
-  static setAuth(jwtToken) {
-    sessionStorage.setItem('auth', jwtToken);
+  static set token(value) {
+    return sessionStorage.setItem('auth', value);
+  }
+
+  static get token() {
+    return sessionStorage.getItem('auth');
   }
 
   static getAuth() {
