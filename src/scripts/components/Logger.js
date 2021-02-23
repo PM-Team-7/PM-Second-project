@@ -1,4 +1,4 @@
-import '@styles/LogMessage.scss';
+import '@styles/Logger.scss';
 
 const messageTypes = [
   'default',
