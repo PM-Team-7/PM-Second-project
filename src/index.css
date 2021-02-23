@@ -204,6 +204,7 @@ form > p > span:hover {
     #dashboard {
         font-size: 1.7em;
         display: block;
+        overflow-x: initial;
     }
 
     .dashboard__table {
