@@ -1,4 +1,6 @@
-class Table {
+import '@styles/Table.scss';
+
+export default class Table {
   constructor(status, cards = []) {
     this.status = status;
     this.cards = cards;
@@ -6,30 +8,17 @@ class Table {
     this.buildView = this.buildView.bind(this);
   }
 
-  addCard() {
-  }
-
-  editCard() {
-  }
-
-  removeCard() {
-  }
-
   buildView() {
-    let cardsHTML = '';
-    this.cards.forEach((card) => {
-      cardsHTML += card.buildView();
-    });
+    const cardsHTML = this.cards.reduce((prev, next) => prev + next.buildView(), '');
 
-    return `<div class="dashboard__table">
-                    <div class="dashboard__heading">
+    return `<div class="dashboard__table table">
+                    <div class="table__heading">
                         <h2>${this.status}</h2>
                         <img src="assets/add.svg" alt="add">
                     </div>
-            
-                    <div class="dashboard__cards">
-                        ${cardsHTML}
-                    </div>
+                    ${this.cards.length ? `<div class="table__cards">
+                                              ${cardsHTML}
+                                          </div>` : ''}
                 </div>`;
   }
 }

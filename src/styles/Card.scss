@@ -1,0 +1,23 @@
+.card {
+  padding: 3% 6%;
+
+  background-color: #fff;
+  border-radius: 2px;
+
+  &__heading {
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & img {
+      cursor: pointer;
+      height: 15px;
+    }
+  }
+
+  &__description {
+    margin: 10px 0 20px 0;
+  }
+}
