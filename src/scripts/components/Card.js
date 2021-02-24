@@ -7,8 +7,22 @@ export default class Card {
     this.description = description;
     this.createdAt = createdAt;
 
+    this.editCard = this.editCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
+
     this.convertDate = this.convertDate.bind(this);
     this.buildView = this.buildView.bind(this);
+    this.registerListener = this.registerListener.bind(this);
+
+    this.registerListener();
+  }
+
+  editCard(e) {
+    console.log(e);
+  }
+
+  deleteCard(e) {
+    console.log(e);
   }
 
   convertDate() {
@@ -22,13 +36,23 @@ export default class Card {
                     <h3>${this.title}</h3>
                     
                     <div class="dashboard__card-icons">
-                        <img src="assets/edit.svg" alt="edit">
-                        <img src="assets/delete.svg" alt="delete">
+                        <img class="edit-icon" src="assets/edit.svg" alt="edit">
+                        <img class="delete-icon" src="assets/delete.svg" alt="delete">
                     </div>
                 </div>
 
                 <p class="dashboard__card-description">${this.description}</p>
                 <p class="dashboard__card-date">${this.convertDate()}</p>
             </div>`;
+  }
+
+  registerListener() {
+    Array.from(document.getElementsByClassName('edit-icon')).forEach((item) => {
+      item.addEventListener('click', this.editCard);
+    });
+
+    Array.from(document.getElementsByClassName('delete-icon')).forEach((item) => {
+      item.addEventListener('click', this.deleteCard);
+    });
   }
 }

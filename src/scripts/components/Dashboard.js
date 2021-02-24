@@ -5,6 +5,7 @@ import CardService from '@services/CardService';
 import Table from '@components/./Table';
 import Card from '@components/./Card';
 import User from '@models/User';
+import emitter from "@services/EventEmitter";
 
 class Dashboard {
   constructor() {
@@ -18,13 +19,25 @@ class Dashboard {
 
   async render() {
     if (User.token) {
+      this.showDashboard();
+
       const statuses = await StatusService.getStatuses();
       const allCards = await CardService.getCards();
 
       this.initTables(statuses, allCards);
 
       this.dashboard.innerHTML = this.buildView();
+    } else {
+      this.hideDashboard();
     }
+  }
+
+  showDashboard() {
+    this.dashboard.classList.remove('hide');
+  }
+
+  hideDashboard() {
+    this.dashboard.classList.add('hide');
   }
 
   initTables(statuses, allCards) {

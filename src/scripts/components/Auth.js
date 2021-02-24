@@ -7,7 +7,6 @@ import emitter from '@services/EventEmitter';
 class Auth {
   constructor() {
     this.authorization = document.getElementById('authorization');
-    this.dashboard = document.getElementById('dashboard');
 
     this.signinForm = document.getElementById('sign-in');
     this.signinUsername = document.getElementById('sign-in__username');
@@ -47,12 +46,10 @@ class Auth {
 
   showAuth() {
     this.authorization.classList.remove('hide');
-    this.dashboard.classList.add('hide');
   }
 
   hideAuth() {
     this.authorization.classList.add('hide');
-    this.dashboard.classList.remove('hide');
   }
 
   signInFormSubmit(e) {
