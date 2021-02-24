@@ -2,6 +2,8 @@ import emitter from '@services/EventEmitter';
 import auth from './scripts/components/Auth';
 import dashboard from './scripts/components/Dashboard';
 
+import emitter from '@services/EventEmitter';
+
 export default class App {
   static init() {
     auth.render();

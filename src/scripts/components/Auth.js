@@ -2,7 +2,6 @@ import '@styles/Auth.scss';
 
 import User from '@models/User';
 import AuthService from '@services/AuthService';
-import emitter from '@services/EventEmitter';
 
 class Auth {
   constructor() {
