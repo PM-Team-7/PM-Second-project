@@ -7,10 +7,13 @@ export default class Card {
     this.description = description;
     this.createdAt = createdAt;
 
+    this.convertDate = this.convertDate.bind(this);
     this.buildView = this.buildView.bind(this);
   }
 
-  editCard() {
+  convertDate() {
+    const date = new Date(this.createdAt).toLocaleDateString();
+    return date === 'Invalid Date' ? '' : date;
   }
 
   buildView() {
@@ -21,7 +24,7 @@ export default class Card {
                 </div>
 
                 <p class="dashboard__card-description">${this.description}</p>
-                <p class="dashboard__card-date">${this.createdAt}</p>
+                <p class="dashboard__card-date">${this.convertDate()}</p>
             </div>`;
   }
 }

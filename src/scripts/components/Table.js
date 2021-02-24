@@ -8,15 +8,6 @@ export default class Table {
     this.buildView = this.buildView.bind(this);
   }
 
-  // addCard() {
-  // }
-  //
-  // editCard() {
-  // }
-  //
-  // removeCard() {
-  // }
-
   buildView() {
     let cardsHTML = '';
     this.cards.forEach((card) => {

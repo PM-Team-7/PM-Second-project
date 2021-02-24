@@ -31,7 +31,8 @@ class Dashboard {
     statuses.forEach((status) => {
       const cardsFiltered = allCards
         .filter((card) => card.status === status.value)
-        .map((card) => new Card(card.id, card.title, card.description ? card.description : '-', card.created_at));
+        .map((card) => new Card(card.id, card.title, card.description ? card.description : '-', card.created_at))
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
       this.tables.push(new Table(status.title, cardsFiltered));
     });
