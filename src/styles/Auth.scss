@@ -26,6 +26,8 @@ form .inputs input {
 
   border: none;
   border-bottom: 0.6px solid rgba(0, 0, 0, 0.2);
+
+  font-size: 1.5em;
 }
 
 button {
@@ -87,6 +89,6 @@ form > p > span:hover {
   #authorization #sign-up form,
   #authorization #sign-in form {
     font-size: 1.5em;
-    width: 65%;
+    width: 75%;
   }
 }
