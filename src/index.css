@@ -24,6 +24,7 @@ body {
 }
 
 #dashboard.hide,
+#loader.hide,
 #sign-up.hide,
 #sign-in.hide {
     display: none;

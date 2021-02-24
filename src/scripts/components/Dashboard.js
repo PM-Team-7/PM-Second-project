@@ -21,11 +21,14 @@ class Dashboard {
     if (User.token) {
       this.showDashboard();
 
+      emitter.emit('showLoader');
+
       const statuses = await StatusService.getStatuses();
       const allCards = await CardService.getCards();
 
       this.initTables(statuses, allCards);
 
+      emitter.emit('hideLoader');
       this.dashboard.innerHTML = this.buildView();
     } else {
       this.hideDashboard();
