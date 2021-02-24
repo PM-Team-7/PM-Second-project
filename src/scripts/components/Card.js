@@ -20,7 +20,11 @@ export default class Card {
     return `<div class="dashboard__card">
                 <div class="dashboard__card-heading">
                     <h3>${this.title}</h3>
-                    <img src="assets/two-dots.svg" alt="add">
+                    
+                    <div class="dashboard__card-icons">
+                        <img src="assets/edit.svg" alt="edit">
+                        <img src="assets/delete.svg" alt="delete">
+                    </div>
                 </div>
 
                 <p class="dashboard__card-description">${this.description}</p>
