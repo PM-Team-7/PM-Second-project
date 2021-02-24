@@ -36,6 +36,7 @@ export default class AuthService {
     if (response) {
       User.token = response.jwt;
       emitter.emit('authorized');
+      emitter.emit('dashboard');
     }
   }
 }

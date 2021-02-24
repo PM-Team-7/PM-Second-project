@@ -37,12 +37,9 @@ class Auth {
   }
 
   render() {
-    if (User.token) {
-      this.hideAuth();
-      emitter.emit('dashboard');
-    } else {
-      this.showAuth();
-    }
+    User.token
+      ? this.hideAuth()
+      : this.showAuth();
   }
 
   showAuth() {
