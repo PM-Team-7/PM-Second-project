@@ -31,18 +31,18 @@ export default class Card {
   }
 
   buildView() {
-    return `<div class="dashboard__card">
-                <div class="dashboard__card-heading">
+    return `<div class="card">
+                <div class="card__heading">
                     <h3>${this.title}</h3>
                     
-                    <div class="dashboard__card-icons">
+                    <div class="card__icons">
                         <img class="edit-icon" src="assets/edit.svg" alt="edit">
                         <img class="delete-icon" src="assets/delete.svg" alt="delete">
                     </div>
                 </div>
 
-                <p class="dashboard__card-description">${this.description}</p>
-                <p class="dashboard__card-date">${this.convertDate()}</p>
+                <p class="card__description">${this.description}</p>
+                <p class="card__date">${this.convertDate()}</p>
             </div>`;
   }
 

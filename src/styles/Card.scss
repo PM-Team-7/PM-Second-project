@@ -1,12 +1,10 @@
-.dashboard__card {
-  margin: 15px 0;
+.card {
   padding: 3% 6%;
 
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
 
-  & .dashboard__card-heading {
+  &__heading {
     margin-top: 10px;
 
     display: flex;
@@ -19,7 +17,7 @@
     }
   }
 
-  & .dashboard__card-description {
+  &__description {
     margin: 10px 0 20px 0;
   }
 }
