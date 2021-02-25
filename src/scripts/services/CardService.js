@@ -27,7 +27,7 @@ export default class CardService {
 
   static async getCardById(id) {
     return HttpService.request({
-      url: `${API_URL}/cards/${id}`,
+      url: `${config.API_URL}/cards/${id}`,
       headers: {
         ...User.getAuth(),
       },
@@ -37,7 +37,7 @@ export default class CardService {
   static async postCard(data) {
     return HttpService.request({
       method: 'POST',
-      url: `${API_URL}/cards`,
+      url: `${config.API_URL}/cards`,
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
         ...User.getAuth(),
@@ -49,7 +49,7 @@ export default class CardService {
   static async putCard(id, data) {
     return HttpService.request({
       method: 'PUT',
-      url: `${API_URL}/cards/${id}`,
+      url: `${config.API_URL}/cards/${id}`,
       headers: {
         'Content-Type': 'application/json',
         ...User.getAuth(),
@@ -61,7 +61,7 @@ export default class CardService {
   static async deleteCard(id) {
     return HttpService.request({
       method: 'DELETE',
-      url: `${API_URL}/cards/${id}`,
+      url: `${config.API_URL}/cards/${id}`,
       headers: {
         ...User.getAuth(),
       },
