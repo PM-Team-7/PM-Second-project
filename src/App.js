@@ -13,5 +13,6 @@ export default class App {
     emitter.subscribe('hideLoader', loader.hide);
 
     auth.render();
+    dashboard.render();
   }
 }
