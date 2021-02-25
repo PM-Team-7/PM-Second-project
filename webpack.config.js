@@ -3,7 +3,6 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const svgToMiniDataURI = require('mini-svg-data-uri');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -44,35 +43,6 @@ module.exports = {
           'css-loader',
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            outputPath: 'assets',
-          },
-        }],
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            outputPath: 'assets',
-          },
-        }],
-      },
-      {
-        test: /\.svg$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            outputPath: 'assets',
-            generator: (content) => svgToMiniDataURI(content.toString()),
-          },
-        }],
       },
     ],
   },
