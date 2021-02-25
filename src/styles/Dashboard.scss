@@ -1,5 +1,7 @@
 #dashboard {
   position: fixed;
+  display: flex;
+  flex-direction: column;
 
   top: 0;
   left: 0;
@@ -7,6 +9,16 @@
   bottom: 0;
 
   width: 100%;
+  height: 100%;
+
+  .hide {
+    display: none;
+  }
+}
+
+#dashboard__tables {
+  width: 100%;
+  height: 100%;
 
   padding: 20px 10px 0 10px;
   margin-bottom: 20px;
@@ -40,10 +52,6 @@
     background-color: #E4E3DE;
   }
 
-  .hide {
-    display: none;
-  }
-
   .table {
     max-height: 98%;
 
@@ -53,10 +61,12 @@
   .table:first-child {
     margin-left: 0;
   }
+}
 
-  @media only screen and (max-width: 700px) {
-    font-size: 1.7em;
-    display: block;
+
+@media only screen and (max-width: 700px) {
+  font-size: 1.7em;
+  display: block;
 
     margin-bottom: 0;
 
@@ -65,8 +75,7 @@
       margin: 0 auto 15px auto;
     }
 
-    .table:last-child {
-      margin-bottom: 0;
-    }
+  .table:last-child {
+    margin-bottom: 0;
   }
 }

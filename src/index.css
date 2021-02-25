@@ -30,6 +30,109 @@ body {
     display: none;
 }
 
+#dashboard {
+    height: 100%;
+    width: 100%;
+
+    overflow: auto;
+
+    position: relative;
+}
+
+#dashboard::-webkit-scrollbar {
+     width: 0;
+     height: 12px;
+ }
+
+#dashboard::-webkit-scrollbar-button {
+     display: block;
+
+     width: 5px;
+     height: 0;
+ }
+
+#dashboard::-webkit-scrollbar-track {
+     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+     border-radius: 10px;
+ }
+
+#dashboard::-webkit-scrollbar-thumb {
+     border-radius: 10px;
+     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+     background-color: #E4E3DE;
+ }
+
+#dashboard__header {
+    height: 60px;
+    width: 100%;
+
+    position: sticky;
+    left: 0;
+
+    color: #F7F6F1;
+    background-color: #677767;
+}
+
+#dashboard__header .wrapper {
+    min-width: 320px;
+
+    height: 100%;
+    width: 100vw;
+
+    padding: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    text-align: center;
+}
+
+#dashboard__header h1 {
+      font-size: 1.5em;
+  }
+
+#dashboard__header button {
+    font-size: 0.9em;
+    padding: 0.7% 1.5%;
+
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+#dashboard__header button:hover,
+#dashboard__header button:active,
+#dashboard__header button:focus {
+     color: #677767;
+     background-color: #fff;
+ }
+
+.hide {
+    display: none;
+}
+
+
+@media only screen and (max-width: 980px) {
+    #dashboard__header button{
+        font-size: 1.3em;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
+    #dashboard {
+        font-size: 1.7em;
+        display: block;
+    }
+
+    #dashboard__header button {
+        font-size: 1.2em;
+
+        padding: 1.5% 3%;
+    }
+}
+
+
 @media only screen and (max-width: 980px) {
     body {
         font-size: 0.6em;

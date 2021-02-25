@@ -44,11 +44,15 @@ export default class Card {
   }
 
   async edit() {
-    const { newTitle, newDescription, newStatus } = await Modals.editCard({
+    const data = await Modals.editCard({
       title: this.title,
       description: this.description,
       status: this.status,
     });
+
+    if (!data) return;
+
+    const { newTitle, newDescription, newStatus } = data;
 
     const response = await CardService.putCard(this.id, {
       title: newTitle,

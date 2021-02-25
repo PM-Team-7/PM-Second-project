@@ -11,30 +11,37 @@ import emitter from '@services/EventEmitter';
 class Dashboard {
   constructor({ rootElement }) {
     this.rootElement = rootElement;
+    this.tablesView = document.getElementById('dashboard__tables');
+    this.signOutBtn = document.getElementById('sign-out');
+    
     this.tables = [];
 
+    this.signOut = this.signOut.bind(this);
+    this.updateTables = this.updateTables.bind(this);
+    
     this.render = this.render.bind(this);
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
-    this.updateTables = this.updateTables.bind(this);
     this.buildView = this.buildView.bind(this);
+    this.registerListener = this.registerListener.bind(this);
+
+    this.registerListener();
   }
 
   async render() {
     if (User.token) {
-      this.show();
-
       emitter.emit('showLoader');
 
       this.statuses = await StatusService.getStatuses();
       const allCards = await CardService.getCards();
 
-      this.rootElement.innerHTML = this.buildView();
+      this.tablesView.innerHTML = this.buildView();
 
       this.updateTables(this.statuses, allCards);
       this.tables.forEach((table) => table.render());
 
       emitter.emit('hideLoader');
+      this.show();
     } else {
       this.hide();
     }
@@ -67,6 +74,19 @@ class Dashboard {
         cards: cardsFiltered,
       });
     });
+  }
+
+  signOut() {
+    User.token = null;
+    this.tables = [];
+
+    this.hide();
+
+    emitter.emit('authorized');
+  }
+
+  registerListener() {
+    this.signOutBtn.addEventListener('click', this.signOut);
   }
 
   buildView() {

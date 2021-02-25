@@ -23,7 +23,11 @@ export default class Table {
   }
 
   async addCard() {
-    const { newTitle, newDescription } = await Modals.createCard();
+    const data = await Modals.createCard();
+
+    if (!data) return;
+
+    const { newTitle, newDescription } = data;
 
     const response = await CardService.postCard({
       title: newTitle,

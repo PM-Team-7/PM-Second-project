@@ -26,6 +26,8 @@ async function createCard() {
     progressSteps: ['1', '2'],
   }).queue(steps);
 
+  if (data.dismiss) return null;
+
   return {
     newTitle: data.value[0],
     newDescription: data.value[1],
@@ -67,6 +69,8 @@ async function editCard({ title, description, status }) {
     showCancelButton: true,
     progressSteps: ['1', '2', '3'],
   }).queue(steps);
+
+  if (data.dismiss) return null;
 
   return {
     newTitle: data.value[0],
