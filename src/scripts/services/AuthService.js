@@ -35,6 +35,7 @@ export default class AuthService {
   static setToken(response) {
     if (response) {
       User.token = response.jwt;
+
       emitter.emit('authorized');
       emitter.emit('dashboard');
     }

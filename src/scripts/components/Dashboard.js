@@ -63,7 +63,10 @@ class Dashboard {
 
   signOut() {
     User.token = null;
+    this.tables = [];
+
     this.hideDashboard();
+
     emitter.emit('authorized');
   }
 
