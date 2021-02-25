@@ -4,7 +4,7 @@ import emitter from '@services/EventEmitter';
 import HttpService from '@services/HttpService';
 import User from '@models/User';
 
-import { API_URL } from '@config';
+import config from '@config';
 
 const handleErrors = async (response) => {
   if (response.ok) return response.json();
@@ -19,7 +19,7 @@ export default class AuthService {
   static async Login({ identifier, password }) {
     const response = await HttpService.request({
       method: 'POST',
-      url: `${API_URL}/auth/local`,
+      url: `${config.API_URL}/auth/local`,
       body: {
         identifier,
         password,
@@ -32,7 +32,7 @@ export default class AuthService {
   static async Registration({ username, email, password }) {
     const response = await HttpService.request({
       method: 'POST',
-      url: `${API_URL}/auth/local/register`,
+      url: `${config.API_URL}/auth/local/register`,
       body: {
         username,
         email,

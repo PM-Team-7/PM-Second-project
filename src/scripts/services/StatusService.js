@@ -3,7 +3,7 @@ import logger from '@components/Logger';
 import HttpService from '@services/HttpService';
 import User from '@models/User';
 
-import { API_URL } from '@config';
+import config from '@config';
 
 const handleErrors = async (response) => {
   if (response.ok) return response.json();
@@ -18,7 +18,7 @@ const handleErrors = async (response) => {
 export default class StatusService {
   static async getStatuses() {
     return HttpService.request({
-      url: `${API_URL}/statuses`,
+      url: `${config.API_URL}/statuses`,
       headers: {
         ...User.getAuth(),
       },
