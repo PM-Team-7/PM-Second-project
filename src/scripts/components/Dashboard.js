@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import '@styles/Dashboard.scss';
 
 import StatusService from '@services/StatusService';
@@ -8,56 +9,70 @@ import User from '@models/User';
 import emitter from '@services/EventEmitter';
 
 class Dashboard {
-  constructor() {
-    this.dashboard = document.getElementById('dashboard');
+  constructor({ rootElement }) {
+    this.rootElement = rootElement;
     this.tablesView = document.getElementById('dashboard__tables');
     this.signOutBtn = document.getElementById('sign-out');
-
+    
     this.tables = [];
 
-    this.render = this.render.bind(this);
-    this.initTables = this.initTables.bind(this);
     this.signOut = this.signOut.bind(this);
-    this.registerListener = this.registerListener.bind(this);
+    this.updateTables = this.updateTables.bind(this);
+    
+    this.render = this.render.bind(this);
+    this.show = this.show.bind(this);
+    this.hide = this.hide.bind(this);
     this.buildView = this.buildView.bind(this);
+    this.registerListener = this.registerListener.bind(this);
 
     this.registerListener();
   }
 
   async render() {
     if (User.token) {
-      this.showDashboard();
-
       emitter.emit('showLoader');
 
-      const statuses = await StatusService.getStatuses();
+      this.statuses = await StatusService.getStatuses();
       const allCards = await CardService.getCards();
 
-      this.initTables(statuses, allCards);
+      this.tablesView.innerHTML = this.buildView();
+
+      this.updateTables(this.statuses, allCards);
+      this.tables.forEach((table) => table.render());
 
       emitter.emit('hideLoader');
-      this.tablesView.innerHTML = this.buildView();
+      this.show();
     } else {
-      this.hideDashboard();
+      this.hide();
     }
   }
 
-  showDashboard() {
-    this.dashboard.classList.remove('hide');
+  show() {
+    this.rootElement.classList.remove('hide');
   }
 
-  hideDashboard() {
-    this.dashboard.classList.add('hide');
+  hide() {
+    this.rootElement.classList.add('hide');
   }
 
-  initTables(statuses, allCards) {
-    statuses.forEach((status) => {
+  updateTables(statuses, allCards) {
+    this.tables = statuses.map((status) => {
       const cardsFiltered = allCards
         .filter((card) => card.status === status.value)
-        .map((card) => new Card(card.id, card.title, card.description ? card.description : '-', card.created_at))
+        .map((card) => new Card({
+          id: card.id,
+          status,
+          title: card.title,
+          description: card.description ? card.description : '-',
+          createdAt: card.created_at,
+        }))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      this.tables.push(new Table(status.title, cardsFiltered));
+      return new Table({
+        rootElement: document.getElementById(`table-${status.id}`),
+        status,
+        cards: cardsFiltered,
+      });
     });
   }
 
@@ -65,7 +80,7 @@ class Dashboard {
     User.token = null;
     this.tables = [];
 
-    this.hideDashboard();
+    this.hide();
 
     emitter.emit('authorized');
   }
@@ -75,13 +90,10 @@ class Dashboard {
   }
 
   buildView() {
-    let tablesHTML = '';
-    this.tables.forEach((table) => {
-      tablesHTML += table.buildView();
-    });
-
-    return tablesHTML;
+    return this.statuses.reduce((prev, next) => prev + `<div id="table-${next.id}" class="dashboard__table table"></div>`, '');
   }
 }
 
-export default new Dashboard();
+export default new Dashboard({
+  rootElement: document.getElementById('dashboard'),
+});

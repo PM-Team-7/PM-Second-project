@@ -1,7 +1,19 @@
+import logger from '@components/Logger';
+
 import HttpService from '@services/HttpService';
 import User from '@models/User';
 
 import { API_URL } from '@config';
+
+const handleErrors = async (response) => {
+  if (response.ok) return response.json();
+
+  const { errors } = await response.json();
+  for (const prop of errors) {
+    logger.show(`${prop}: ${errors[prop]}`);
+  }
+  return null;
+};
 
 export default class StatusService {
   static async getStatuses() {
@@ -10,6 +22,6 @@ export default class StatusService {
       headers: {
         ...User.getAuth(),
       },
-    });
+    }).then(handleErrors);
   }
 }
