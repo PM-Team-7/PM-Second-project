@@ -2,14 +2,9 @@
   height: 100%;
   width: 100%;
 
-  padding: 20px 10px 0 10px;
-  margin-bottom: 20px;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-
   overflow: auto;
+  
+  position: relative;
 
   &::-webkit-scrollbar {
     width: 0px;
@@ -38,14 +33,74 @@
     display: none;
   }
 
-  .table {
-    max-height: 98%;
+  & .header {
+    height: 60px;
+    width: 100%;
 
-    margin: 0 10px;
+    position: sticky;
+    left: 0;
+
+    color: #F7F6F1;
+    background-color: #677767;
+
+    & .wrapper {
+      min-width: 320px;
+
+      height: 100%;
+      width: 100vw;
+
+      padding: 0 20px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      text-align: center;
+
+      & h1 {
+        font-size: 1.5em;
+      }
+
+      & button {
+        font-size: 0.9em;
+        padding: 0.7% 1.5%;
+
+        color: #fff;
+        border: 1px solid #fff;
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: #677767;
+          background-color: #fff;
+        }
+      }
+    }
   }
 
-  .table:first-child {
-    margin-left: 0;
+  .tables {
+    padding: 20px 10px 0 10px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .table {
+      max-height: 98%;
+
+      margin: 0 10px;
+    }
+
+    .table:first-child {
+      margin-left: 0;
+    }
+  }
+
+  @media only screen and (max-width: 980px) {
+    .header button{
+      font-size: 1.3em;
+    }
   }
 
   @media only screen and (max-width: 700px) {
@@ -59,6 +114,12 @@
 
     .table:last-child {
       margin-bottom: 0;
+    }
+
+    .header button {
+      font-size: 1.2em;
+
+      padding: 1.5% 3%;
     }
   }
 }

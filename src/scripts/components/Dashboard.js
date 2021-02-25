@@ -60,7 +60,15 @@ class Dashboard {
       tablesHTML += table.buildView();
     });
 
-    return tablesHTML;
+    return `<div class="header">
+                       <div class="wrapper">
+                           <h1>Better Trello</h1>
+                           <button id="sign-out">Sign out</button>
+                       </div>
+                   </div>
+             <div class="tables">
+                 ${tablesHTML}
+             </div>`;
   }
 }
 
