@@ -30,10 +30,24 @@ export default class Card {
     this.registerListener = this.registerListener.bind(this);
   }
 
+  update(newData) {
+    this.id = newData.id;
+    this.title = newData.title;
+    this.description = newData.description;
+    this.createdAt = newData.created_at;
+
+    if (this.status.value === newData.status) {
+      this.render();
+    } else {
+      emitter.emit(`table-${Dashboard.statuses.find((status) => status.value === newData.status).id}:moveCard`, this);
+    }
+  }
+
   async edit() {
     const { newTitle, newDescription, newStatus } = await Modals.editCard({
       title: this.title,
       description: this.description,
+      status: this.status,
     });
 
     const response = await CardService.putCard(this.id, {
@@ -42,18 +56,7 @@ export default class Card {
       status: newStatus,
     });
 
-    if (response) {
-      this.id = response.id;
-      this.title = response.title;
-      this.description = response.description;
-      this.createdAt = response.created_at;
-
-      if (this.status.value === newStatus) {
-        this.render();
-      } else {
-        emitter.emit(`table-${Dashboard.statuses.find((status) => status.value === newStatus).id}:moveCard`, this);
-      }
-    }
+    if (response) this.update(response);
   }
 
   async delete() {
