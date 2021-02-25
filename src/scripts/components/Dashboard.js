@@ -5,16 +5,23 @@ import CardService from '@services/CardService';
 import Table from '@components/./Table';
 import Card from '@components/./Card';
 import User from '@models/User';
-import emitter from "@services/EventEmitter";
+import emitter from '@services/EventEmitter';
 
 class Dashboard {
   constructor() {
     this.dashboard = document.getElementById('dashboard');
+    this.tablesView = document.getElementById('dashboard__tables');
+    this.signOutBtn = document.getElementById('sign-out');
+
     this.tables = [];
 
     this.render = this.render.bind(this);
     this.initTables = this.initTables.bind(this);
+    this.signOut = this.signOut.bind(this);
+    this.registerListener = this.registerListener.bind(this);
     this.buildView = this.buildView.bind(this);
+
+    this.registerListener();
   }
 
   async render() {
@@ -29,7 +36,7 @@ class Dashboard {
       this.initTables(statuses, allCards);
 
       emitter.emit('hideLoader');
-      this.dashboard.innerHTML = this.buildView();
+      this.tablesView.innerHTML = this.buildView();
     } else {
       this.hideDashboard();
     }
@@ -54,21 +61,23 @@ class Dashboard {
     });
   }
 
+  signOut() {
+    User.token = null;
+    this.hideDashboard();
+    emitter.emit('authorized');
+  }
+
+  registerListener() {
+    this.signOutBtn.addEventListener('click', this.signOut);
+  }
+
   buildView() {
     let tablesHTML = '';
     this.tables.forEach((table) => {
       tablesHTML += table.buildView();
     });
 
-    return `<div class="header">
-                       <div class="wrapper">
-                           <h1>Better Trello</h1>
-                           <button id="sign-out">Sign out</button>
-                       </div>
-                   </div>
-             <div class="tables">
-                 ${tablesHTML}
-             </div>`;
+    return tablesHTML;
   }
 }
 

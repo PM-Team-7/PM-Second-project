@@ -3,7 +3,6 @@ import '@styles/Auth.scss';
 import User from '@models/User';
 
 import AuthService from '@services/AuthService';
-import emitter from '@services/EventEmitter';
 
 class Auth {
   constructor() {
@@ -37,9 +36,11 @@ class Auth {
   }
 
   render() {
-    User.token
-      ? this.hideAuth()
-      : this.showAuth();
+    if (User.token) {
+      this.hideAuth();
+    } else {
+      this.showAuth();
+    }
   }
 
   showAuth() {
