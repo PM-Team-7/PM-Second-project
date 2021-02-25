@@ -66,7 +66,7 @@ export default class Table {
   }
 
   buildView() {
-    const cardsHTML = this.cards.reduce((prev, next) => prev + `<div id="table-${this.id}-card-${next.id}" class="card"></div>`, '');
+    const cardsHTML = this.cards.reduce((prev, next) => `${prev}<div id="table-${this.id}-card-${next.id}" class="card"></div>`, '');
 
     return `<div class="table__heading">
               <h2>${this.status.title}</h2>

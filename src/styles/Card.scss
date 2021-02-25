@@ -4,17 +4,19 @@
   background-color: #fff;
   border-radius: 2px;
 
+  overflow-wrap: break-word;
+
   &__heading {
     margin-top: 10px;
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     width: 100%;
   }
 
-  &__heading h3{
+  &__heading h3 {
     width: calc(100% - 45px);
     margin-right: 10px;
   }
