@@ -32,7 +32,7 @@ async function createCard() {
   };
 }
 
-async function editCard({ title, description }) {
+async function editCard({ title, description, status }) {
   const steps = [
     {
       title: 'Title',
@@ -56,6 +56,7 @@ async function editCard({ title, description }) {
       inputOptions: Dashboard.statuses.reduce((prev, next) => Object.assign(prev, {
         [next.value]: next.title,
       }), {}),
+      inputValue: status.value,
       inputPlaceholder: 'Select status...',
       preConfirm: (value) => value || Swal.showValidationMessage('Status missing'),
     },
