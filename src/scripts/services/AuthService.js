@@ -1,8 +1,19 @@
-import User from '@models/User';
+import logger from '@components/Logger';
 import emitter from '@services/EventEmitter';
+
 import HttpService from '@services/HttpService';
+import User from '@models/User';
 
 import { API_URL } from '@config';
+
+const handleErrors = async (response) => {
+  if (response.ok) return response.json();
+
+  const { message } = await response.json();
+  message[0].messages.forEach((msg) => logger.show(msg.message));
+
+  return null;
+};
 
 export default class AuthService {
   static async Login({ identifier, password }) {
@@ -13,7 +24,7 @@ export default class AuthService {
         identifier,
         password,
       },
-    });
+    }).then(handleErrors);
 
     this.setToken(response);
   }
@@ -27,7 +38,7 @@ export default class AuthService {
         email,
         password,
       },
-    });
+    }).then(handleErrors);
 
     this.setToken(response);
   }

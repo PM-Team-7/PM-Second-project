@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import '@styles/Dashboard.scss';
 
 import StatusService from '@services/StatusService';

@@ -53,11 +53,8 @@ async function editCard({ title, description }) {
       title: 'Status',
       text: 'Edit card status',
       input: 'select',
-      inputOptions: Dashboard.statuses.reduce((prev, next) => Object.create({
-        ...prev,
-        ...({
-          [next.value]: next.title,
-        }),
+      inputOptions: Dashboard.statuses.reduce((prev, next) => Object.assign(prev, {
+        [next.value]: next.title,
       }), {}),
       inputPlaceholder: 'Select status...',
       preConfirm: (value) => value || Swal.showValidationMessage('Status missing'),
