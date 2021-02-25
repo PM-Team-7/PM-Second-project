@@ -9,25 +9,55 @@
   height: 100%;
 }
 
-form {
+.auth-form {
   width: 40%;
-  padding: 3% 5%;
+  padding: 5%;
   text-align: center;
 
   background-color: #fff;
   border-radius: 2px;
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
-}
 
-form .inputs input {
-  margin: 5% 0;
-  width: 100%;
-  line-height: 1.5;
+  &__heading {
+    margin-bottom: 1em;
 
-  border: none;
-  border-bottom: 0.6px solid rgba(0, 0, 0, 0.2);
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 
-  font-size: 1.5em;
+  &__inputs input {
+    margin: 5% 0;
+    width: 100%;
+    line-height: 1.5;
+  
+    border: none;
+    border-bottom: 0.6px solid rgba(0, 0, 0, 0.2);
+  
+    font-size: 1.5em;
+  }
+
+  &__inputs input::placeholder {
+    opacity: 0.5;
+  }
+  
+  &__inputs input:focus {
+    outline: none;
+  }
+
+  p {
+    font-size: 0.9em;
+  }
+  
+  p span {
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  p span:hover {
+    color: #677767;
+    text-decoration: underline;
+  }
 }
 
 button {
@@ -56,29 +86,6 @@ button:focus {
 
   color: #fff;
   background-color: #677767;
-}
-
-form .inputs input::placeholder {
-  opacity: 0.5;
-}
-
-form .inputs input:focus {
-  outline: none;
-}
-
-form > p {
-  font-size: 0.9em;
-}
-
-form > p > span {
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-form > p > span:hover {
-  color: #677767;
-  text-decoration: underline;
 }
 
 .hide {
