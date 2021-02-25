@@ -1,5 +1,11 @@
 #dashboard {
-  height: 100%;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   width: 100%;
 
   padding: 20px 10px 0 10px;
@@ -12,7 +18,7 @@
   overflow: auto;
 
   &::-webkit-scrollbar {
-    width: 0px;
+    width: 12px;
     height: 12px;
   }
 
@@ -51,6 +57,8 @@
   @media only screen and (max-width: 700px) {
     font-size: 1.7em;
     display: block;
+
+    margin-bottom: 0;
 
     .table {
       width: 100%;
