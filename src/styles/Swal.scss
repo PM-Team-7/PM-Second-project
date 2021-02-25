@@ -59,3 +59,14 @@
 .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step ~ .swal2-progress-step {
   background: rgba(0, 0, 0, 0.2) !important;
 }
+
+.swal2-title {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+  hyphens: auto !important;
+}
+
+.swal2-content {
+  margin: 10px 0 !important;
+}

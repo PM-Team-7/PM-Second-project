@@ -23,6 +23,7 @@ export default class Card {
 
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
+    this.showInfo = this.showInfo.bind(this);
 
     this.convertDate = this.convertDate.bind(this);
     this.render = this.render.bind(this);
@@ -71,6 +72,16 @@ export default class Card {
     }
   }
 
+  showInfo(e) {
+    if (!e.target.matches('.edit-icon, .delete-icon')) {
+      Modals.showCardInfo({
+        title: this.title,
+        description: this.description,
+        date: this.convertDate(),
+      });
+    }
+  }
+
   convertDate() {
     const date = new Date(this.createdAt).toLocaleDateString();
     return date === 'Invalid Date' ? '' : date;
@@ -104,5 +115,6 @@ export default class Card {
   registerListener() {
     this.deleteBtn.addEventListener('click', this.delete);
     this.editBtn.addEventListener('click', this.edit);
+    this.rootElement.addEventListener('click', this.showInfo);
   }
 }

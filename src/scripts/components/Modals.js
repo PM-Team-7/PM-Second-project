@@ -93,7 +93,15 @@ async function editCard({ title, description, status }) {
   };
 }
 
+function showCardInfo({ title, description, date }) {
+  Swal.fire({
+    title: `${title}`,
+    html: `${description}<br>${date}`,
+  });
+}
+
 export default {
   createCard,
   editCard,
+  showCardInfo,
 };
